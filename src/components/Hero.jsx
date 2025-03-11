@@ -18,11 +18,11 @@ const Hero = () => {
             Connecting People Across <br />
             <span className="text-blue-400">Faiths & Interests</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg md:text-xl max-w-2xl">
+          <p className="mt-4 mb-6 text-base sm:text-lg md:text-xl max-w-2xl">
             Join events, connect with communities, and experience meaningful conversations.
           </p>
           <Link to="/events">
-            <button className="mt-6 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg rounded-lg shadow-md transition-transform transform hover:scale-105">
+            <button className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg rounded-lg shadow-md transition-transform transform hover:scale-105">
               Explore Events
             </button>
           </Link>
