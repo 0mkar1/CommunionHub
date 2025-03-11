@@ -37,10 +37,10 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Menu Overlay */}
-      {nav && <div className='bg-black/80 fixed w-full h-screen top-0 left-0 z-10' onClick={() => setNav(false)}></div>}
+      <div className={`fixed w-full h-screen bg-black/80 top-0 left-0 z-10 transition-opacity duration-300 ${nav ? 'opacity-100 visible' : 'opacity-0 invisible'}`} onClick={() => setNav(false)}></div>
       
       {/* Mobile Side Menu */}
-      <div className={`${nav ? 'fixed' : 'hidden'} top-0 right-0 w-[300px] h-screen bg-white z-20 shadow-lg`}>
+      <div className={`fixed top-0 right-0 w-[300px] h-screen bg-white z-20 shadow-lg transform transition-transform duration-300 ${nav ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className='flex justify-between items-center p-4'>
           <img src={logo} alt="Logo" className="h-6 sm:h-8 w-auto" />
           <AiOutlineClose size={30} className='cursor-pointer' onClick={() => setNav(false)} />
