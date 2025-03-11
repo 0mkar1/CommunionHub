@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="max-w-[1640px] mx-auto px-4 py-8">
+    <div className="max-w-[1640px] mx-auto px-4 py-8 pt-24">
       <div className="relative  w-full h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-lg">
         {/* Background Image */}
         <img

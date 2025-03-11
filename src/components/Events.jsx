@@ -49,14 +49,14 @@ const Events = () => {
   };
 
   return (
-    <div className="max-w-[1640px] m-auto px-4 py-12">
+    <div className="max-w-[1640px] m-auto px-4 py-12 pt-24">
       <h1 className="bg-gradient-to-r from-[#03b8f5] to-black bg-clip-text text-transparent text-center text-4xl font-bold pb-1">✦ Upcoming Events</h1>
       <div className="flex justify-center space-x-4 my-4 overflow-auto">
         <button onClick={() => filterEvents('All')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">All</button>
         {categories.map(category => (
           <button key={category} onClick={() => filterEvents(category)} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">{category}</button>
         ))}
-        <button onClick={() => setShowForm(true)} className="px-4 py-2 bg-green-600 text-white hover:bg-green-700">Add Event</button>
+        <button onClick={() => setShowForm(true)} className="px-4 py-2 bg-green-600 text-white hover:bg-green-700 border-green-700">Add Event</button>
       </div>
 
       {showForm && (
