@@ -61,7 +61,7 @@ const Events = () => {
 
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-60" onClick={() => setShowForm(false)}>
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto relative" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto relative z-60" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-xl font-bold mb-4">Add New Event</h2>
             <form onSubmit={addEvent}>
               <input type="text" name="name" placeholder="Event Name" value={newEvent.name} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required />
