@@ -2,7 +2,8 @@ import React from 'react';
 import event1 from '../image/event-1.png'
 import event2 from '../image/event-2.png'
 import event3 from '../image/event-3.png'
-const HeadlineCards = () => {
+
+const HomepageCards = () => {
   return (
     <div className='max-w-[1640px] mx-auto p-4 py-12 grid md:grid-cols-3 gap-6'>
       {/* Card */}
@@ -51,4 +52,4 @@ const HeadlineCards = () => {
   );
 };
 
-export default HeadlineCards;
+export default HomepageCards;

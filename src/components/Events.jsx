@@ -5,8 +5,6 @@ import { IoLocationSharp } from "react-icons/io5";
 import { IoTime } from "react-icons/io5";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-
-
 const Events = () => {
   const [filteredEvents, setFilteredEvents] = useState(initialEvents);
   const [events, setEvents] = useState(initialEvents);

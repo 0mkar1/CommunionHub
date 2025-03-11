@@ -1,29 +1,20 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import HeadlineCards from './components/HeadlineCards'
+import Homepage from './components/Homepage'
+import HomepageCards from './components/HomepageCards'
 import Events from './components/Events'
-import Category from './components/Category'
 import About from './components/About'
 
 function App() {
   return (
-    // <div>
-    //     <Navbar />
-    //     <Hero />
-    //     <HeadlineCards />
-    //     <Events />
-    //     <Category />
-    // </div>
     <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={
           <>
-            <Hero />
-            <HeadlineCards />
-            {/* <Category /> */}
+            <Homepage />
+            <HomepageCards />
           </>
         } />
         <Route path="/events" element={<Events />} />
