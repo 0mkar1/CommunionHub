@@ -10,7 +10,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <div className='fixed top-0 w-full z-50 bg-white shadow-md max-w-[1640px] mx-auto flex justify-between items-center p-4 h-16'>
+    <div className='fixed top-0 w-full z-30 bg-white shadow-md max-w-[1640px] mx-auto flex justify-between items-center p-4 h-16'>
       {/* Left side - Logo */}
       <div className='flex items-center'>
         {!nav && (
