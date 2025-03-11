@@ -66,7 +66,7 @@ const Events = () => {
   return (
     <div className="max-w-[1640px] m-auto px-4 py-12">
       <h1 className="bg-gradient-to-r from-[#03b8f5] to-black bg-clip-text text-transparent text-center text-4xl font-bold pb-1">✦ Upcoming Events</h1>
-      <div className="flex justify-center space-x-4 my-4">
+      <div className="flex justify-center space-x-4 my-4 overflow-auto">
         <button onClick={() => setFilteredEvents(events)} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">All Events</button>
         <button onClick={() => filterEvents('today')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">Today</button>
         <button onClick={() => filterEvents('tomorrow')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">Tomorrow</button>
