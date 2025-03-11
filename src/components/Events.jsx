@@ -1,41 +1,26 @@
 import React, { useState } from 'react';
 import { events as initialEvents } from '../data/data.js';
 import { RiArrowRightUpLine } from "react-icons/ri";
+import { IoLocationSharp } from "react-icons/io5";
+import { IoTime } from "react-icons/io5";
+import { FaRegCalendarAlt } from "react-icons/fa";
+
+
 
 const Events = () => {
   const [filteredEvents, setFilteredEvents] = useState(initialEvents);
   const [events, setEvents] = useState(initialEvents);
   const [showForm, setShowForm] = useState(false);
-  const [newEvent, setNewEvent] = useState({ name: '', date: '', time: '', image: '' });
+  const [newEvent, setNewEvent] = useState({ name: '', date: '', time: '', image: '', category: 'religious', description: '', location: '' });
 
-  const filterEvents = (timeRange) => {
-    const now = new Date();
-    const filtered = events.filter((event) => {
-      const eventDate = new Date(event.date);
-      if (timeRange === 'today') return eventDate.toDateString() === now.toDateString();
-      if (timeRange === 'tomorrow') {
-        const tomorrow = new Date();
-        tomorrow.setDate(now.getDate() + 1);
-        return eventDate.toDateString() === tomorrow.toDateString();
-      }
-      if (timeRange === 'this_week') {
-        const weekEnd = new Date();
-        weekEnd.setDate(now.getDate() + (7 - now.getDay()));
-        return eventDate >= now && eventDate <= weekEnd;
-      }
-      if (timeRange === 'next_month') {
-        const nextMonthStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-        const nextMonthEnd = new Date(nextMonthStart.getFullYear(), nextMonthStart.getMonth() + 1, 0);
-        return eventDate >= nextMonthStart && eventDate <= nextMonthEnd;
-      }
-      return true;
-    });
-    setFilteredEvents(filtered);
-  };
+  const categories = ['Religious', 'Social', 'Charity'];
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const filterEvents = (category) => {
+    if (category === 'All') {
+      setFilteredEvents(events);
+    } else {
+      setFilteredEvents(events.filter(event => event.category.toLowerCase() === category.toLowerCase()));
+    }
   };
 
   const handleInputChange = (e) => {
@@ -58,7 +43,7 @@ const Events = () => {
       const updatedEvents = [...events, newEvent];
       setEvents(updatedEvents);
       setFilteredEvents(updatedEvents);
-      setNewEvent({ name: '', date: '', time: '', image: '' });
+      setNewEvent({ name: '', date: '', time: '', image: '', category: 'religious', description: '', location: '' });
       setShowForm(false);
     }
   };
@@ -67,11 +52,10 @@ const Events = () => {
     <div className="max-w-[1640px] m-auto px-4 py-12">
       <h1 className="bg-gradient-to-r from-[#03b8f5] to-black bg-clip-text text-transparent text-center text-4xl font-bold pb-1">✦ Upcoming Events</h1>
       <div className="flex justify-center space-x-4 my-4 overflow-auto">
-        <button onClick={() => setFilteredEvents(events)} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">All Events</button>
-        <button onClick={() => filterEvents('today')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">Today</button>
-        <button onClick={() => filterEvents('tomorrow')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">Tomorrow</button>
-        <button onClick={() => filterEvents('this_week')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">This Week</button>
-        <button onClick={() => filterEvents('next_month')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">Next Month</button>
+        <button onClick={() => filterEvents('All')} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">All</button>
+        {categories.map(category => (
+          <button key={category} onClick={() => filterEvents(category)} className="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">{category}</button>
+        ))}
         <button onClick={() => setShowForm(true)} className="px-4 py-2 bg-green-600 text-white hover:bg-green-700">Add Event</button>
       </div>
 
@@ -83,6 +67,13 @@ const Events = () => {
               <input type="text" name="name" placeholder="Event Name" value={newEvent.name} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required />
               <input type="date" name="date" value={newEvent.date} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required />
               <input type="time" name="time" value={newEvent.time} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required />
+              <select name="category" value={newEvent.category} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required>
+                {categories.map(category => (
+                  <option key={category} value={category.toLowerCase()}>{category}</option>
+                ))}
+              </select>
+              <input type="text" name="location" placeholder="Location" value={newEvent.location} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required />
+              <textarea name="description" placeholder="Description" value={newEvent.description} onChange={handleInputChange} className="w-full p-2 border rounded mb-2" required />
               <input type="file" accept="image/*" onChange={handleFileChange} className="w-full p-2 border rounded mb-2" required />
               <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">Add Event</button>
               <button type="button" onClick={() => setShowForm(false)} className="w-full mt-2 bg-red-600 text-white p-2 rounded">Cancel</button>
@@ -97,8 +88,10 @@ const Events = () => {
             <div key={index} className="border shadow-lg rounded-lg hover:scale-105 duration-300 p-4">
               <img src={event.image} alt={event.name} className="w-full h-48 object-cover rounded-lg" />
               <h2 className="font-bold text-xl mt-2">{event.name}</h2>
-              <p className="text-gray-600">{formatDate(event.date)}</p>
-              <p className="text-gray-700">{event.time}</p>
+              <p className="text-gray-600 flex items-center gap-2"><span><FaRegCalendarAlt /></span>{event.date}</p>
+              <p className="text-gray-700 flex items-center gap-2"><span><IoTime /></span>{event.time}</p>
+              <p className="text-gray-700 flex items-center gap-2"><span><IoLocationSharp /></span>{event.location}</p>
+              <p className="pt-5 text-gray-700">{event.description}</p>
               <button className='w-full mt-5 flex justify-center items-center bg-[#1f2a37] rounded-lg text-white'>Event Details<span><RiArrowRightUpLine /></span></button>
             </div>
           ))

@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div className="max-w-[1640px] mx-auto px-4 py-8">
-      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px]">
+      <div className="relative  w-full h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-lg">
         {/* Background Image */}
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
           src={homepage}
           alt="Communion App"
         />

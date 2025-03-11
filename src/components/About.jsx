@@ -2,13 +2,15 @@ import React from 'react';
 
 const HeadlineCards = () => {
   return (
-    <div className="h-[41rem] bg-gray-100 flex items-center justify-center p-6">
-      <div className="max-w-3xl bg-white shadow-lg rounded-2xl p-8">
-        <h1 className="text-4xl font-bold text-center text-blue-600">About Communion</h1>
-        <p className="mt-4 text-gray-600 text-lg text-center">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6">
+      <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-6 sm:p-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-600">
+          About Communion
+        </h1>
+        <p className="mt-4 text-gray-600 text-base sm:text-lg text-center">
           Connecting people of all faiths through events and community support.
         </p>
-        <div className="mt-6 space-y-4 text-gray-700">
+        <div className="mt-6 space-y-4 text-gray-700 text-sm sm:text-base">
           <p>
             The <span className="font-semibold text-blue-500">Communion App</span> is a platform designed to bring individuals
             from diverse faiths together. Whether you're looking to participate in
@@ -23,7 +25,7 @@ const HeadlineCards = () => {
           </p>
         </div>
         <div className="mt-8 flex justify-center">
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition">
+          <button className="bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg hover:bg-blue-700 transition">
             Get Started
           </button>
         </div>
